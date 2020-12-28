@@ -1,0 +1,51 @@
+[
+    {
+        "uuid": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "onlineStatus": 1,
+        "devName": "Rolladen",
+        "devIconId": "device063_eu",
+        "bindTime": 1234567890,
+        "deviceType": "mrs100",
+        "subType": "eu",
+        "channels": [
+            {}
+        ],
+        "region": "eu",
+        "fmwareVersion": "2.1.2",
+        "hdwareVersion": "2.0.0",
+        "userDevIcon": "",
+        "iconType": 1,
+        "skillNumber": "",
+        "domain": "mqtt-eu.meross.com",
+        "reservedDomain": "mqtt-eu-alter.meross.com"
+    },
+    {
+        "_events": {},
+        "_eventsCount": 6,
+        "clientResponseTopic": null,
+        "waitingMessageIds": {},
+        "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "userId": "703191",
+        "dev": {
+            "uuid": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "onlineStatus": 1,
+            "devName": "Rolladen",
+            "devIconId": "device063_eu",
+            "bindTime": 1234567890,
+            "deviceType": "mrs100",
+            "subType": "eu",
+            "channels": [
+                {}
+            ],
+            "region": "eu",
+            "fmwareVersion": "2.1.2",
+            "hdwareVersion": "2.0.0",
+            "userDevIcon": "",
+            "iconType": 1,
+            "skillNumber": "",
+            "domain": "mqtt-eu.meross.com",
+            "reservedDomain": "mqtt-eu-alter.meross.com"
+        }
+    }
+]

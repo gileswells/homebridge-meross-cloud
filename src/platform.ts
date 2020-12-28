@@ -1,6 +1,6 @@
 import { API, DynamicPlatformPlugin, Logger, PlatformAccessory, Service, Characteristic } from 'homebridge';
 import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
-import { smartPlugs } from './Devices/smartPlugs';
+import { mss620 } from './Devices/mss620';
 import { MerossCloudPlatformConfig } from './configTypes';
 import MerossCloud from 'meross-cloud';
 
@@ -83,14 +83,14 @@ export class MerossCloudPlatform implements DynamicPlatformPlugin {
 
     meross.on('deviceInitialized', (deviceId, deviceDef, device) => {
       this.log.debug('New device ' + deviceId + ': ' + JSON.stringify(deviceDef));
-      this.deviceInfo(deviceDef, device);
+      this.deviceInfo(meross, deviceDef, device);
 
       device.on('connected', () => {
         // For Future Devices
         switch (deviceDef.deviceType) {
           case 'mss620':
             this.log.info('Discovered %s %s', deviceDef.devName, deviceDef.deviceType, deviceDef.uuid);
-            this.createSmartPlug(deviceDef);
+            this.createMSS620(deviceDef);
             break;
           default:
             this.log.info(
@@ -107,7 +107,7 @@ export class MerossCloudPlatform implements DynamicPlatformPlugin {
     });
   }
 
-  private async createSmartPlug(deviceDef) {
+  private async createMSS620(deviceDef) {
     const uuid = this.api.hap.uuid.generate(`${deviceDef.devName}-${deviceDef.uuid}-${deviceDef.deviceType}`);
 
     // see if an accessory with the same uuid has already been registered and restored from
@@ -124,7 +124,7 @@ export class MerossCloudPlatform implements DynamicPlatformPlugin {
         this.api.updatePlatformAccessories([existingAccessory]);
         // create the accessory handler for the restored accessory
         // this is imported from `platformAccessory.ts`
-        new smartPlugs(this, existingAccessory, deviceDef);
+        new mss620(this, existingAccessory, deviceDef);
         this.log.debug(`Humidifier UDID: ${deviceDef.devName}-${deviceDef.uuid}-${deviceDef.deviceType}`);
       } else {
         this.unregisterPlatformAccessories(existingAccessory);
@@ -144,7 +144,7 @@ export class MerossCloudPlatform implements DynamicPlatformPlugin {
       // accessory.context.firmwareRevision = findaccessories.accessoryAttribute.softwareRevision;
       // create the accessory handler for the newly create accessory
       // this is imported from `platformAccessory.ts`
-      new smartPlugs(this, accessory, deviceDef);
+      new mss620(this, accessory, deviceDef);
       this.log.debug(`Humidifier UDID: ${deviceDef.devName}-${deviceDef.uuid}-${deviceDef.deviceType}`);
 
       // link the accessory to your platform
@@ -159,8 +159,9 @@ export class MerossCloudPlatform implements DynamicPlatformPlugin {
     this.log.info('Removing existing accessory from cache:', existingAccessory.displayName);
   }
 
-  public deviceInfo(deviceDef, device) {
+  public deviceInfo(meross, deviceDef, device) {
     if (this.config.devicediscovery) {
+      this.log.warn(JSON.stringify(meross));
       this.log.warn(JSON.stringify(deviceDef));
       this.log.warn(JSON.stringify(device));
     }

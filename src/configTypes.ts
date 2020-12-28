@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { PlatformConfig } from 'homebridge';
 
 //Config
