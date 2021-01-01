@@ -21,7 +21,13 @@ export class mss620 {
   OutletUpdate: any;
   meross: any;
 
-  constructor(private readonly platform: MerossCloudPlatform, private accessory: PlatformAccessory, public deviceDef) {
+  constructor(
+    private readonly platform: MerossCloudPlatform,
+    private accessory: PlatformAccessory,
+    public device,
+    public deviceId,
+    public deviceDef,
+  ) {
     // default placeholders
     this.On;
     this.OutletInUse;
@@ -106,16 +112,8 @@ export class mss620 {
    * Asks the SwitchBot API for the latest device information
    */
   async refreshStatus() {
-    const options: any = {
-      'email': this.platform.config.email,
-      'password': this.platform.config.password,
-    };
-    const meross = new MerossCloudDevice(options);
-    this.meross.on('deviceInitialized', (deviceId, deviceDef, device) => {
-      this.platform.log.debug('New device ' + deviceId + ': ' + JSON.stringify(deviceDef));
-
-      // ???? Need to figure out how to get update from cloud
-      device.publishMessage('GET', deviceId, 'On', 'connected');
+    this.device.on('data', (namespace, payload) => {
+      this.platform.log.info('DEV: ' + this.deviceId + ' ' + namespace + ' - data: ' + JSON.stringify(payload));
     });
 
     try {
@@ -134,12 +132,11 @@ export class mss620 {
    * Pushes the requested changes to the SwitchBot API
    */
   async pushChanges() {
-    // ???? Need to figure out how to psuh update to cloud
-    this.meross.on('deviceInitialized', (deviceId, deviceDef, device) => {
-      this.platform.log.debug('New device ' + deviceId + ': ' + JSON.stringify(deviceDef));
-      device.controlToggle(true, 'connected');
+    this.device.controlToggleX(val.channel, (value ? 1 : 0), (err, res) => {
+      this.platform.log.debug('ToggleX Response: err: ' + err + ', res: ' + JSON.stringify(res));
+      this.platform.log.debug(this.deviceId + '.' + val.channel + ': set value ' + value);
     });
-    this.platform.log.debug('Outlet %s pushChanges -', this.accessory.displayName);
+    //this.platform.log.debug('Outlet %s pushChanges -', this.accessory.displayName);
 
     // Make the API request
     this.platform.log.debug('Outlet %s Changes pushed -', this.accessory.displayName);
