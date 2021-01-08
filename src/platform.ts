@@ -95,7 +95,7 @@ export class MerossCloudPlatform implements DynamicPlatformPlugin {
           default:
             this.log.info(
               `A Meross Device has been discovered with Device Type: ${deviceDef.deviceType}, which is currently not supported.`,
-              'Enable Device Discovery on Plugin Settings, Then Submit Meross Cloud Info Here: https://git.io/JLD51.',
+              'Enable Device Discovery on Plugin Settings, Then Submit Meross Cloud Info Here: https://git.io/JLD51',
               //'Submit Feature Requests Here: https://git.io/JLD5y,',
             );
         }
