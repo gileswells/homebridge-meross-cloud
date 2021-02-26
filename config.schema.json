@@ -27,6 +27,7 @@
       "hide_device": {
         "title": "Hide Devices",
         "type": "array",
+        "placeholder": "31213782524133762963059f2f040c89f",
         "items": {
           "type": "string"
         }
