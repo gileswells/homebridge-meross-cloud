@@ -1,0 +1,89 @@
+[
+    {
+        "uuid": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "onlineStatus": 1,
+        "devName": "Smart Hub",
+        "devIconId": "device040_un",
+        "bindTime": 1234567890,
+        "deviceType": "msh300",
+        "subType": "un",
+        "channels": [
+            {}
+        ],
+        "region": "eu",
+        "fmwareVersion": "4.1.26",
+        "hdwareVersion": "4.0.0",
+        "userDevIcon": "",
+        "iconType": 1,
+        "skillNumber": "",
+        "domain": "mqtt-eu.meross.com",
+        "reservedDomain": "mqtt-eu-alter.meross.com"
+    },
+    {
+        "_events": {},
+        "_eventsCount": 6,
+        "clientResponseTopic": null,
+        "waitingMessageIds": {},
+        "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "userId": "123456",
+        "dev": {
+            "uuid": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "onlineStatus": 1,
+            "devName": "Smart Hub",
+            "devIconId": "device040_un",
+            "bindTime": 1234567890,
+            "deviceType": "msh300",
+            "subType": "un",
+            "channels": [
+                {}
+            ],
+            "region": "eu",
+            "fmwareVersion": "4.1.26",
+            "hdwareVersion": "4.0.0",
+            "userDevIcon": "",
+            "iconType": 1,
+            "skillNumber": "",
+            "domain": "mqtt-eu.meross.com",
+            "reservedDomain": "mqtt-eu-alter.meross.com"
+        },
+        "subDeviceList": [
+            {
+                "subDeviceId": "xxxxxxxxxxxx",
+                "trueId": "xxxxxxxx",
+                "subDeviceType": "ms100",
+                "subDeviceSubType": "un",
+                "subDeviceVendor": "meross",
+                "subDeviceName": "MS100",
+                "subDeviceIconId": "device001"
+            },
+            {
+                "subDeviceId": "xxxxxxxxxxxx",
+                "trueId": "xxxxxxxx",
+                "subDeviceType": "ms100",
+                "subDeviceSubType": "un",
+                "subDeviceVendor": "meross",
+                "subDeviceName": "MS100",
+                "subDeviceIconId": "device001"
+            },
+            {
+                "subDeviceId": "xxxxxxxxxxxx",
+                "trueId": "xxxxxxxx",
+                "subDeviceType": "ms100",
+                "subDeviceSubType": "un",
+                "subDeviceVendor": "meross",
+                "subDeviceName": "MS100",
+                "subDeviceIconId": "device001"
+            },
+            {
+                "subDeviceId": "xxxxxxxxxxxx",
+                "trueId": "xxxxxxxx",
+                "subDeviceType": "ms100",
+                "subDeviceSubType": "un",
+                "subDeviceVendor": "meross",
+                "subDeviceName": "MS100",
+                "subDeviceIconId": "device001"
+            }
+        ]
+    }
+]

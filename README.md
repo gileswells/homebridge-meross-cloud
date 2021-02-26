@@ -1,6 +1,6 @@
 <span align="center">
 
-<a href="https://github.com/homebridge/verified/blob/master/verified-plugins.json"><img alt="homebridge-verified" src="https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/Meross_x_Homebridge.svg" width="500px"></a>
+<a href="https://github.com/homebridge/verified/blob/master/verified-plugins.json"><img alt="homebridge-verified" src="https://raw.githubusercontent.com/donavanbecker/homebridge-meross-cloud/master/meross/Meross_x_Homebridge.svg" width="500px"></a>
 
 # Homebridge Meross Cloud
 
@@ -26,3 +26,6 @@ This Plugin allows you to control your Meross Devices from HomeKit.
 1. Download Meross App on App Store or Google Play Store.
 2. Register a Meross account and log in into your account.
 3. Input Meross E-mail and Password into Config.
+
+## Supported Meross Devices
+  - MSS110

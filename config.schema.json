@@ -1,0 +1,41 @@
+{
+  "pluginAlias": "MerossCloud",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "<p align='center'><img width='400px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/Meross_x_Homebridge.svg'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below. For information regarding your `messageId`, `timestamp`, and `sign` please refer to our Credentials [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Getting-Credentials), and for multi-outlet units see specific model configurations [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Specific-Model-Configurations).",
+  "footerDisplay": "Visit our [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki) for answer to commonly asked questions. If the device you are trying to setup is not listed above or you need more assistance, please open an issue on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "MerossCloud",
+        "required": true
+      },
+      "email": {
+        "name": "E-mail",
+        "type": "string",
+        "placeholder": "email@email.com",
+        "description": "Your Meross Account E-mail."
+      },
+      "password": {
+        "name": "Password",
+        "type": "string",
+        "description": "Your Meross Account Password."
+      },
+      "hide_device": {
+        "title": "Hide Devices",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "devicediscovery": {
+        "name": "Device Discovery",
+        "type": "boolean",
+        "description": "Enable Device Info Logging."
+      }
+    }
+  }
+}

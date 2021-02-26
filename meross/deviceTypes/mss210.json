@@ -1,0 +1,51 @@
+[
+    {
+        "uuid": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "onlineStatus": 1,
+        "devName": "NAS",
+        "devIconId": "device024",
+        "bindTime": 1234567890,
+        "deviceType": "mss210",
+        "subType": "eu",
+        "channels": [
+            {}
+        ],
+        "region": "eu",
+        "fmwareVersion": "4.1.9",
+        "hdwareVersion": "4.0.0",
+        "userDevIcon": "",
+        "iconType": 1,
+        "skillNumber": "",
+        "domain": "mqtt-eu.meross.com",
+        "reservedDomain": "mqtt-eu-alter.meross.com"
+    },
+    {
+        "_events": {},
+        "_eventsCount": 6,
+        "clientResponseTopic": null,
+        "waitingMessageIds": {},
+        "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "userId": "123456",
+        "dev": {
+            "uuid": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "onlineStatus": 1,
+            "devName": "NAS",
+            "devIconId": "device024",
+            "bindTime": 1234567890,
+            "deviceType": "mss210",
+            "subType": "eu",
+            "channels": [
+                {}
+            ],
+            "region": "eu",
+            "fmwareVersion": "4.1.9",
+            "hdwareVersion": "4.0.0",
+            "userDevIcon": "",
+            "iconType": 1,
+            "skillNumber": "",
+            "domain": "mqtt-eu.meross.com",
+            "reservedDomain": "mqtt-eu-alter.meross.com"
+        }
+    }
+]
