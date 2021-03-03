@@ -10,7 +10,7 @@ import { DeviceDefinition, MerossCloudDevice } from 'meross-cloud';
  * An instance of this class is created for each accessory your platform registers
  * Each accessory may expose multiple services of different service types.
  */
-export class mss110 {
+export class hp110a {
   private service!: Service;
 
   On!: CharacteristicValue;
@@ -19,6 +19,8 @@ export class mss110 {
   OutletUpdateInProgress: boolean;
   devicestatus!: Record<any, any>;
   OnOff!: number;
+  light: any;
+  channel: any;
 
   constructor(
     private readonly platform: MerossCloudPlatform,
@@ -44,7 +46,7 @@ export class mss110 {
       .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Meross')
       .setCharacteristic(this.platform.Characteristic.Model, deviceDef.deviceType)
       .setCharacteristic(this.platform.Characteristic.SerialNumber, deviceDef.uuid)
-      .setCharacteristic(this.platform.Characteristic.FirmwareRevision, '4.1.14');
+      .setCharacteristic(this.platform.Characteristic.FirmwareRevision, '4.1.22');
 
     // get the LightBulb service if it exists, otherwise create a new Outlet service
     // you can create multiple services for each accessory
@@ -52,7 +54,7 @@ export class mss110 {
 
     this.platform.log.debug('Setting Up %s ', deviceDef.devName, JSON.stringify(deviceDef));
     (this.service = this.accessory.getService(deviceDef.devName)
-      || this.accessory.addService(this.platform.Service.Outlet, deviceDef.devName, deviceDef.devName)), accessory.displayName;
+      || this.accessory.addService(this.platform.Service.Lightbulb, deviceDef.devName, deviceDef.devName)), accessory.displayName;
 
     // To avoid "Cannot add a Service with the same UUID another Service without also defining a unique 'subtype' property." error,
     // when creating multiple services of the same type, you need to use the following syntax to specify a name and subtype id:
@@ -71,8 +73,6 @@ export class mss110 {
     this.service
       .getCharacteristic(this.platform.Characteristic.On)
       .onSet(this.OnSet.bind(this));
-
-    this.service.setCharacteristic(this.platform.Characteristic.OutletInUse, true);
 
     // Retrieve initial values and updateHomekit
     this.updateHomeKitCharacteristics();
@@ -126,6 +126,7 @@ export class mss110 {
       for (const onoff of this.devicestatus.all.digest.togglex) {
         this.platform.log.debug(onoff);
         this.OnOff = onoff.onoff;
+        this.channel = onoff.chanel;
       }
       this.updateFirmware(result);
       try {
@@ -161,6 +162,10 @@ export class mss110 {
         this.platform.log.debug('Toggle Response: err: ' + err + ', res: ' + JSON.stringify(res.all));
         await this.refreshStatus();
       });
+      /*this.device.controlLight(this.On, async (err, res) => {
+        this.platform.log.warn('Toggle Response: err: ' + err + ', res: ' + JSON.stringify(res.all));
+        await this.refreshStatus();
+      });*/
     }, 2000);
   }
 
