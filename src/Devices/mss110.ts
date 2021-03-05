@@ -13,6 +13,57 @@ import { DeviceDefinition, MerossCloudDevice } from 'meross-cloud';
 export class mss110 {
   private service!: Service;
 
+  public revisions = [
+    {
+      deviceType: 'mss110',
+      revisions: [
+        {
+          hardware: '2.0.0',
+          firmware: '2.1.21',
+        },
+        {
+          hardware: '4.0.0',
+          firmware: '4.1.14',
+        },
+        {
+          hardware: '5.0.0',
+          firmware: '5.1.2',
+        },
+      ],
+    },
+    {
+      deviceType: 'mss210',
+      revisions: [
+        {
+          hardware: '4.0.0',
+          firmware: '4.1.9',
+        },
+        {
+          hardware: '6.0.0',
+          firmware: '6.1.8',
+        },
+      ],
+    },
+    {
+      deviceType: 'mss310',
+      revisions: [
+        {
+          hardware: '2.0.0',
+          firmware: '2.1.16',
+        },
+      ],
+    },
+    {
+      deviceType: 'mss310r',
+      revisions: [
+        {
+          hardware: '2.0.0',
+          firmware: '2.1.14',
+        },
+      ],
+    },
+  ];
+
   On!: CharacteristicValue;
   OutletInUse!: CharacteristicValue;
   OutletUpdate: Subject<unknown>;
@@ -44,7 +95,8 @@ export class mss110 {
       .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Meross')
       .setCharacteristic(this.platform.Characteristic.Model, deviceDef.deviceType)
       .setCharacteristic(this.platform.Characteristic.SerialNumber, deviceDef.uuid)
-      .setCharacteristic(this.platform.Characteristic.FirmwareRevision, '4.1.14');
+      .setCharacteristic(this.platform.Characteristic.HardwareRevision, deviceDef.hdwareVersion)
+      .setCharacteristic(this.platform.Characteristic.FirmwareRevision, deviceDef.fmwareVersion);
 
     // get the LightBulb service if it exists, otherwise create a new Outlet service
     // you can create multiple services for each accessory
@@ -146,9 +198,25 @@ export class mss110 {
   }
 
   private updateFirmware(result: Record<any, any>) {
+    const deviceType = this.accessory
+      .getService(this.platform.Service.AccessoryInformation)
+      ?.getCharacteristic(this.platform.Characteristic.Model);
+    const hardwareRevision = this.accessory
+      .getService(this.platform.Service.AccessoryInformation)
+      ?.getCharacteristic(this.platform.Characteristic.HardwareRevision);
+    let latestFirmwareRevision = '0.0.0';
+    const listOfRevisions = this.revisions.find(device => {
+      return device.deviceType === deviceType?.value;
+    });
+    latestFirmwareRevision = listOfRevisions?.revisions.find(deviceRevisions => {
+      return deviceRevisions.hardware === hardwareRevision?.value;
+    })?.firmware ?? latestFirmwareRevision;
+
+    console.log(latestFirmwareRevision);
+
     this.accessory
       .getService(this.platform.Service.AccessoryInformation)!
-      .getCharacteristic(this.platform.Characteristic.FirmwareRevision).updateValue(result.all.system.firmware.version);
+      .getCharacteristic(this.platform.Characteristic.FirmwareRevision).updateValue(latestFirmwareRevision);
   }
 
   /**
